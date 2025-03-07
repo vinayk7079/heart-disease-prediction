@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        form {
+            display: grid;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .visualizations {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Heart Disease Prediction</h1>
+        <form action="/predict" method="POST">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required min="1" max="120">
+
+            <label for="sex">Sex (0: Female, 1: Male):</label>
+            <select id="sex" name="sex" required>
+                <option value="0">Female</option>
+                <option value="1">Male</option>
+            </select>
+
+            <label for="cp">Chest Pain Type (0-3):</label>
+            <select id="cp" name="cp" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+
+            <label for="trestbps">Resting Blood Pressure (mmHg):</label>
+            <input type="number" id="trestbps" name="trestbps" required min="50" max="200">
+
+            <label for="chol">Cholesterol (mg/dl):</label>
+            <input type="number" id="chol" name="chol" required min="100" max="600">
+
+            <label for="fbs">Fasting Blood Sugar > 120 mg/dl (0 or 1):</label>
+            <select id="fbs" name="fbs" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+
+            <label for="restecg">Resting ECG (0-2):</label>
+            <select id="restecg" name="restecg" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+
+            <label for="thalach">Max Heart Rate:</label>
+            <input type="number" id="thalach" name="thalach" required min="50" max="220">
+
+            <label for="exang">Exercise Induced Angina (0 or 1):</label>
+            <select id="exang" name="exang" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+
+            <label for="oldpeak">ST Depression (0-6):</label>
+            <input type="number" id="oldpeak" name="oldpeak" required min="0" max="6" step="0.1">
+
+            <label for="slope">Slope (0-2):</label>
+            <select id="slope" name="slope" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+
+            <label for="ca">Number of Major Vessels (0-4):</label>
+            <input type="number" id="ca" name="ca" required min="0" max="4">
+
+            <label for="thal">Thal (0-3):</label>
+            <select id="thal" name="thal" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <div class="visualizations">
+            <h2>Data Visualizations</h2>
+            <img src="{{ url_for('static', filename='images/age_distribution.png') }}" alt="Age Distribution">
+            <img src="{{ url_for('static', filename='images/age_vs_chol.png') }}" alt="Age vs Cholesterol">
+            <img src="{{ url_for('static', filename='images/sex_vs_target.png') }}" alt="Sex vs Target">
+        </div>
+    </div>
+</body>
+</html>
